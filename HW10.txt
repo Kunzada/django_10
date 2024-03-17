@@ -1,0 +1,11 @@
+py manage.py shell 
+from app.models import *
+todos=todo.objects.all()
+1)Циклом измените все заголовки моделей на тот же заголовок, но + id. Пример: «заголовок (id)».
+
+for todo in todos: todo.title= f"{todo.title} {todo.id}", todo.save() 
+2)Удалите записи, которые имеют нечётную цифру в заголовке.
+
+for todo in todos:
+    if any(char.isdigit() and int(char) % 2 == 0 for char in todo.title):
+        todo.delete()
